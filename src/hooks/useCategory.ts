@@ -1,0 +1,22 @@
+import { useEffect, useState } from 'react';
+import { fetchCategory } from '../api/category.api';
+import { Category } from '../models/category.model';
+
+export const useCategory = () => {
+  const [category, setCategory] = useState<Category[]>([]);
+
+  useEffect(() => {
+    fetchCategory().then((data) => {
+      if (!data) return;
+
+      const categoryWithAll = [
+        { category_id: null, category_name: '전체' },
+        ...data,
+      ];
+
+      setCategory(categoryWithAll);
+    });
+  }, []);
+
+  return { category };
+};
