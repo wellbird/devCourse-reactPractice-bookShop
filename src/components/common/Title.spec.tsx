@@ -36,6 +36,6 @@ describe('Title 컴포넌트 테스트', () => {
       </BookStoreThemeProvider>
     );
     // 확인
-    expect(container?.firstChild).toHaveStyle({ color: 'rgb(165, 42, 42)' });
+    expect(container?.firstChild).toHaveStyle({ color: 'rgb(255, 88, 0)' });
   });
 });

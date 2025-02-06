@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
 import Signin from './pages/Signin';
+import Books from './pages/Books';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
     path: '/books',
     element: (
       <Layout>
-        <Home />
+        <Books />
       </Layout>
     ),
   },
