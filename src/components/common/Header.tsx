@@ -9,7 +9,7 @@ import { useAlert } from '../../hooks/useAlert';
 const Header = () => {
   const { category } = useCategory();
   const { isSignedIn, storeSignout } = useAuthStore();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const handleSignout = () => {
     storeSignout();

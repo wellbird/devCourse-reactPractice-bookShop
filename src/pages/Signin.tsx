@@ -11,7 +11,7 @@ import { useAuthStore } from '../store/authStore';
 
 const Signin = () => {
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const { storeSignin } = useAuthStore();
 
