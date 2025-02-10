@@ -1,19 +1,13 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import Title from '../components/common/Title';
 import InputText from '../components/common/Input';
 import Button from '../components/common/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import { signin } from '../api/auth.api';
-import { useAlert } from '../hooks/useAlert';
+import { Link } from 'react-router-dom';
 import { SignupProps, SignupStyle } from './Signup';
-import { useAuthStore } from '../store/authStore';
+import { useAuth } from '@/hooks/useAuth';
 
 const Signin = () => {
-  const navigate = useNavigate();
-  const { showAlert } = useAlert();
-
-  const { storeSignin } = useAuthStore();
+  const { userSignin } = useAuth();
 
   const {
     register,
@@ -22,16 +16,7 @@ const Signin = () => {
   } = useForm<SignupProps>();
 
   const onSubmit = (data: SignupProps) => {
-    signin(data).then(
-      (res) => {
-        storeSignin(res.token);
-        showAlert('로그인이 완료되었습니다.');
-        navigate('/');
-      },
-      (error) => {
-        showAlert('로그인에 실패하였습니다.');
-      }
-    );
+    userSignin(data);
   };
 
   return (
