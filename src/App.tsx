@@ -1,16 +1,16 @@
-import Layout from './components/layout/Layout';
-import Home from './pages/Home';
-import Error from './components/common/Error';
-import { BookStoreThemeProvider } from './context/themeContext';
+import Layout from '@/components/layout/Layout.tsx';
+import Home from '@/pages/Home';
+import Error from '@/components/common/Error';
+import { BookStoreThemeProvider } from '@/context/themeContext';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Signup from './pages/Signup';
-import ResetPassword from './pages/ResetPassword';
-import Signin from './pages/Signin';
-import Books from './pages/Books';
-import BookDetail from './pages/BookDetail';
-import Cart from './pages/Cart';
-import Order from './pages/Order';
-import OrderList from './pages/OrderList';
+import Signup from '@/pages/Signup';
+import ResetPassword from '@/pages/ResetPassword';
+import Signin from '@/pages/Signin';
+import Books from '@/pages/Books';
+import BookDetail from '@/pages/BookDetail';
+import Cart from '@/pages/Cart';
+import Order from '@/pages/Order';
+import OrderList from '@/pages/OrderList';
 
 const router = createBrowserRouter([
   {
