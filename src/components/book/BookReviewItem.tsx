@@ -11,8 +11,8 @@ interface Props {
 const Star = (props: Pick<IBookReviewItem, 'score'>) => {
   return (
     <span className="star">
-      {Array.from({ length: props.score }, () => (
-        <FaStar />
+      {Array.from({ length: props.score }, (_, idx) => (
+        <FaStar key={idx} />
       ))}
     </span>
   );
