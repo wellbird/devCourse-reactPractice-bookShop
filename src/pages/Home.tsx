@@ -1,14 +1,16 @@
-import React from 'react';
-import Title from '../components/common/Title';
-import Button from '../components/common/Button';
-import InputText from '../components/common/Input';
+import styled from 'styled-components';
+import MainReview from '@/components/main/MainReview';
+import { useMain } from '@/hooks/useMain';
 
 const Home = () => {
+  const { reviews } = useMain();
   return (
-    <>
-      <div>home body</div>
-    </>
+    <HomeStyle>
+      <MainReview reviews={reviews} />
+    </HomeStyle>
   );
 };
+
+const HomeStyle = styled.div``;
 
 export default Home;
