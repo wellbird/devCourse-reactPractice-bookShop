@@ -16,16 +16,18 @@ export const useIntersectionObserver = (
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback, options);
-    if (targetRef.current) {
-      observer.observe(targetRef.current);
+    const currentTarget = targetRef.current;
+
+    if (currentTarget) {
+      observer.observe(currentTarget);
     }
 
     return () => {
-      if (targetRef.current) {
-        observer.unobserve(targetRef.current);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
     };
-  });
+  }, [callback, options]);
 
   return targetRef;
 };
