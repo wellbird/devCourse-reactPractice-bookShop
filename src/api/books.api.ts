@@ -39,11 +39,16 @@ export const fetchBook = async (bookId: string) => {
 };
 
 export const likeBook = async (bookId: number) => {
-  const responxe = await httpClient.post(`/likes/${bookId}`);
-  return responxe.data;
+  const response = await httpClient.post(`/likes/${bookId}`);
+  return response.data;
 };
 
 export const unlikeBook = async (bookId: number) => {
-  const responxe = await httpClient.delete(`/likes/${bookId}`);
-  return responxe.data;
+  const response = await httpClient.delete(`/likes/${bookId}`);
+  return response.data;
+};
+
+export const fetchBestBooks = async () => {
+  const response = await httpClient.get<Book[]>('/books/best');
+  return response.data;
 };
