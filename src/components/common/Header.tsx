@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 import logo from '../../assets/images/logo.png';
-import { FaRegUser, FaSignInAlt, FaUserCircle } from 'react-icons/fa';
+import {
+  FaAngleRight,
+  FaBars,
+  FaRegUser,
+  FaSignInAlt,
+  FaUserCircle,
+} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useCategory } from '../../hooks/useCategory';
 import { useAuthStore } from '../../store/authStore';
 import { useAlert } from '../../hooks/useAlert';
 import Dropdown from './Dropdown';
 import ThemeSwitcher from '../header/ThemeSwitcher';
+import { useState } from 'react';
 
 const Header = () => {
   const { category } = useCategory();
   const { isSignedIn, storeSignout } = useAuthStore();
   const { showAlert } = useAlert();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   const handleSignout = () => {
     storeSignout();
@@ -19,13 +27,19 @@ const Header = () => {
   };
 
   return (
-    <HeaderStyle>
+    <HeaderStyle $isMobileSidebarOpen={isMobileSidebarOpen}>
       <h1 className="logo">
         <Link to="/">
           <img src={logo} alt="book store" />
         </Link>
       </h1>
       <nav className="category">
+        <button
+          className="menu-button"
+          onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+        >
+          {isMobileSidebarOpen ? <FaAngleRight /> : <FaBars />}
+        </button>
         <ul>
           {category.map((item) => (
             <li key={item.category_id}>
@@ -81,7 +95,11 @@ const Header = () => {
   );
 };
 
-const HeaderStyle = styled.header`
+interface HeaderStyleProps {
+  $isMobileSidebarOpen: boolean;
+}
+
+const HeaderStyle = styled.header<HeaderStyleProps>`
   width: 100%;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.layout.width.large};
@@ -99,6 +117,9 @@ const HeaderStyle = styled.header`
   }
 
   .category {
+    .menu-button {
+      display: none;
+    }
     ul {
       display: flex;
       gap: 32px;
@@ -141,6 +162,58 @@ const HeaderStyle = styled.header`
             margin-right: 6px;
           }
         }
+      }
+    }
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    height: 52px;
+    margin-top: 0;
+
+    .logo {
+      padding: 0 0 0 12px;
+
+      img {
+        width: 140px;
+      }
+    }
+
+    .auth {
+      position: absolute;
+      top: 20px;
+      right: 12px;
+    }
+
+    .category {
+      .menu-button {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        right: ${(props) => (props.$isMobileSidebarOpen ? '62%' : '52px')};
+
+        transition: right 0.2s ease-in-out;
+
+        background: #fff;
+        border: 0;
+        font-size: 1.5rem;
+      }
+
+      ul {
+        position: fixed;
+        top: 0;
+        right: ${(props) => (props.$isMobileSidebarOpen ? '0' : '-100%')};
+        width: 60%;
+        height: 100vh;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: right 0.2s ease-in-out;
+
+        margin: 0;
+        padding: 24px;
+        z-index: 1000;
+
+        flex-direction: column;
+        gap: 16px;
       }
     }
   }

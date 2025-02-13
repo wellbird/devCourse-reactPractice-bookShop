@@ -5,9 +5,11 @@ import Title from '@/components/common/Title';
 import MainNewBooks from '@/components/main/MainNewBooks';
 import MainBest from '@/components/main/MainBest';
 import Banner from '@/components/common/banner/Banner';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const Home = () => {
   const { reviews, newBooks, bestBooks, banners } = useMain();
+  const { isMobie } = useMediaQuery();
   return (
     <HomeStyle>
       <Banner banners={banners} />

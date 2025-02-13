@@ -28,6 +28,7 @@ const Signin = () => {
             <InputText
               placeholder="이메일"
               inputType="email"
+              inputMode="email"
               {...register('email', { required: true })}
             />
             {errors.email && (
@@ -38,6 +39,7 @@ const Signin = () => {
             <InputText
               placeholder="비밀번호"
               inputType="password"
+              inputMode="text"
               {...register('password', { required: true })}
             />
             {errors.password && (
